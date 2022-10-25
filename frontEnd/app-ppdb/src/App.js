@@ -1,26 +1,24 @@
 import React from "react";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css"
-import Detail from "./component/Detail/Detail";
-import Faq from "./component/FAQ/Faq";
-import Feature from "./component/Feature/Feature";
-import Footer from "./component/Footer/Footer";
-import Header from './component/Header/Header'
-import Hero from "./component/Hero/Hero";
+import{BrowserRouter, Routes, Route} from "react-router-dom"
+import Home from "./page/Home";
+import Form from "./page/Form/Form";
+
 
 
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
-      <Header/>
-      <Hero/>
-      <Feature/>
-      <Detail/>
-      <Faq/>
-      <Footer/>
-     
-
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/login" element={<Form/>}/>
+      </Routes>
+      
     </div>
+    </BrowserRouter>
   );
 }
 
