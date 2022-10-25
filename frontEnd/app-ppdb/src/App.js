@@ -3,7 +3,9 @@ import React from "react";
 import "./App.css"
 import{BrowserRouter, Routes, Route} from "react-router-dom"
 import Home from "./page/Home";
-import Form from "./page/Form/Form";
+import Login from "./page/Form/Login";
+import Register from "./page/Form/Register";
+
 
 
 
@@ -14,7 +16,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/login" element={<Form/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>
       </Routes>
       
     </div>
