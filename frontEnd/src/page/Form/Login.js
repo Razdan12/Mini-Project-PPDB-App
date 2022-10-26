@@ -60,8 +60,9 @@ const Login = () => {
                 </div>
               </div>
 
-              {/* <!-- Submit button --> */}
+              <Link to="/admin">
               <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
+              </Link>
 
               {/* <!-- Register buttons --> */}
               <div className="text-center">

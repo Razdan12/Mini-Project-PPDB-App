@@ -5,6 +5,7 @@ import{BrowserRouter, Routes, Route} from "react-router-dom"
 import Home from "./page/Home";
 import Login from "./page/Form/Login";
 import Register from "./page/Form/Register";
+import IndexAdmin from "./component/Admin/IndexAdmin";
 
 
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
+        <Route path="/admin" element={<IndexAdmin/>}/>
       </Routes>
       
     </div>
