@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 const Login = () => {
   return (
     <div className="kotakLogin">
+      
       <div className="kotakLogin1" >
         
         <div className="loginForm" data-aos="fade-up">
@@ -69,6 +70,19 @@ const Login = () => {
           {/* <!-- Pills content --> */}
         </div>
       </div>
+      <div class="elements">
+          <div>.</div>
+          <div>.</div>
+          <div>.</div>
+          <div>.</div>
+          <div>.</div>
+          <div>.</div>
+          <div>.</div>
+          <div>.</div>
+          <div>.</div>
+          <div>.</div>
+          
+        </div>
     </div>
   )
 }
