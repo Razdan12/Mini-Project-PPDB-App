@@ -1,5 +1,5 @@
 import React from "react";
-import "../assets/css/dark.css";
+// import "../assets/css/dark.css";
 import "../assets/css/style.css"
 
 import About from "../component/About";
@@ -17,8 +17,6 @@ const Home = () => {
     return (
         <div>
             <body>
-                
-
                 <div className="know_tm_all_wrap" data-magic-cursor="show">
                     <Header />
                     <Hero />

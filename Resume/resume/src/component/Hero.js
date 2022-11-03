@@ -1,6 +1,7 @@
 import React from 'react'
 
 import tumb from "../assets/img/thumbs/47-60.jpg"
+import hero from "../assets/img/Foto-KTP-Kartun-removebg-preview.png"
 
 import satu from "../assets/img/svg/shapes/1.svg"
 import dua from "../assets/img/svg/shapes/2.svg"
@@ -31,14 +32,14 @@ const Hero = () => {
                                             <div className="main_info">
                                                 <div className="left">
                                                     <span className="subtitle">I'm</span>
-                                                    {/* <h3 className="name">{pribadi.name}</h3>
-                                                    <p className="text">{pribadi.description}</p> */}
+                                                    <h3 className="name">Nur Cahyanto</h3>
+                                                    <p className="text">Programer</p>
         
                                                 </div>
                                                 <div className="right">
                                                     <div className="image">
                                                         <img src={tumb} alt="" />
-                                                        {/* <div className="main" data-img-url={pribadi.photo}></div> */}
+                                                        <div className="main" data-img-url={hero}></div>
                                                     </div>
                                                 </div>
                                             </div>
