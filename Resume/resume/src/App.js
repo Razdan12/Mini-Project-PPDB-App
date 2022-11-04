@@ -1,4 +1,12 @@
 import React from "react";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+  from
+} from "@apollo/client"
+import {onError} from '@apollo/client/link/error'
 import Home from "./page/Home";
 import Login from "./component/Form/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
@@ -8,11 +16,33 @@ import ProfileAdmin from "./admin/page/ProfileAdmin";
 import PortfolioAdmin from "./admin/page/PortfolioAdmin";
 import ServiceAdmin from "./admin/page/ServiceAdmin";
 
+const errorLink = onError(({graphQLErrors}) => {
+  if (graphQLErrors){
+    graphQLErrors.map(({message}) => {
+      alert(`Graph Ql Eror ${message}`)
+    })
+  }
+})
+
+// const link = from([
+//   errorLink,
+//   new HttpLink({ uri:"https://capable-wolf-76.hasura.app/v1/graphql"})
+// ]);
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri:'https://quick-raccoon-82.hasura.app/v1/graphql',
+  headers:{
+    'x-hasura-admin-secret' : 'VnVP6VG1OT1suqWkF7so2T0mhFtD6Ko5DJOZu83ITu3QU5vtqKEpcNOjKiJD1ggB'
+  }
+  
+});
 
 
 function App() {
 
   return (
+    <ApolloProvider client={client}>
     <div>
       <BrowserRouter>
 
@@ -30,6 +60,7 @@ function App() {
 
 
     </div>
+    </ApolloProvider>
   );
 }
 
