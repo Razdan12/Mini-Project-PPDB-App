@@ -28,14 +28,18 @@ const Hero = () => {
                     <div className="container">
                         <div className="content_inner">
                             <div className="main_info">
-                                {data?.users.map((user) => (
-                                    <div className="left">
-                                        <span className="subtitle">I'm</span>
-                                        <h3 className="name">{user.name}</h3>
-                                        <p className="text">{user.email}</p>
 
-                                    </div>
-                                ))}
+                                <div className="left">
+                                    <span className="subtitle">I'm</span>
+                                    {data?.users.map((user) => (
+                                        <h3 className="name">{user.name}</h3>
+                                    ))}
+                                    {data?.about.map((about) => (
+                                        <p className="text">{about.title}</p>
+                                    ))}
+
+                                </div>
+
                                 <div className="right">
                                     <div className="image">
                                         <img src={tumb} alt="" />
