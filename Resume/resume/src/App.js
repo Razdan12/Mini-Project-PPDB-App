@@ -3,8 +3,7 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  HttpLink,
-  from
+
 } from "@apollo/client"
 import {onError} from '@apollo/client/link/error'
 import Home from "./page/Home";
@@ -24,10 +23,6 @@ const errorLink = onError(({graphQLErrors}) => {
   }
 })
 
-// const link = from([
-//   errorLink,
-//   new HttpLink({ uri:"https://capable-wolf-76.hasura.app/v1/graphql"})
-// ]);
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
