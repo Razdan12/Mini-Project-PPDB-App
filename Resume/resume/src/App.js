@@ -7,6 +7,7 @@ import {
 } from "@apollo/client"
 import {onError} from '@apollo/client/link/error'
 import Home from "./page/Home";
+import Update from "./page/Update"
 import Login from "./component/Form/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import HomeAdmin from "./admin/HomeAdmin";
@@ -49,6 +50,7 @@ function App() {
           <Route path="/profile" element={<ProfileAdmin />} />
           <Route path="/portfolio" element={<PortfolioAdmin />} />
           <Route path="/service" element={<ServiceAdmin />} />
+          <Route path="/update" element={<Update />} />
           
         </Routes>
       </BrowserRouter>

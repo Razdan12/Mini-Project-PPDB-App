@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import {useMutation } from '@apollo/client'
+import React, { useState } from 'react'
+import { useMutation } from '@apollo/client'
 
 import "../assets/css/sb-admin-2.min.css"
 import NavAdmin from '../component/NavAdmin'
@@ -10,77 +10,100 @@ const ProfileAdmin = () => {
     const [nama, setName] = useState("")
     const [mail, setEmail] = useState("")
     const [alamat, setAddress] = useState("")
-    const [noHp, setPhone] = useState("")
+    const [phone, setPhone] = useState("")
+    const [tglLahir, setTglLahir] = useState("")
+    const [photo, setPhoto] = useState("")
     // const [phone, setPhone] = useState("")
 
-    const [editProfile, {data}] = useMutation(UPDATE_PROFILE)
+    const [updateData, { error }] = useMutation(UPDATE_PROFILE)
 
-    console.log(editProfile)
+    const addData = async (e) => {
+        e.preventDefault()
+       await updateData({ 
+            variables: { 
+                name: nama, 
+                address: alamat, 
+                dob: tglLahir, 
+                email: mail, 
+                image: photo, 
+                noHp: phone } 
+            })
+        
+    }
+
+    // console.log(editProfile)
 
     return (
         <div>
             <div id="wrapper">
                 <Sidebar />
-                <div id="content-wrapper" class="d-flex flex-column">
+                <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
                         <NavAdmin />
                     </div>
-                    <div class="ml-4">
-                        <h1 class="h3 mb-0 text-gray-800">Profile</h1>
+                    <div className="ml-4">
+                        <h1 className="h3 mb-0 text-gray-800">Profile</h1>
                     </div>
-                    <div class="col-lg-12 mb-4">
-                        <div class="col-sm-12 p-2">
-                            <div class="card p-4">
-                                <form class="row g-3">
-                                    <div class="col-md-4">
-                                        <label for="fisrtName" class="form-label">First name</label>
-                                        <input 
-                                            onChange={(e) => {setName(e.target.value)}}
-                                        
-                                        type="text" class="form-control" id="firstName" />
+                    <div className="col-lg-12 mb-4">
+                        <div className="col-sm-12 p-2">
+                            <div className="card p-4">
+                                <form className="row g-3">
+                                    <div className="col-md-4">
+                                        <label className="form-label">Nama </label>
+                                        <input
+                                            onChange={(e) => { setName(e.target.value) }}
+
+                                            type="text" className="form-control" />
 
                                     </div>
-                                    
-                                    <div class="col-md-4">
-                                        <label for="email" class="form-label">Email</label>
-                                        <div class="input-group has-validation">
-                                            <span class="input-group-text" id="email">email</span>
-                                            <input 
-                                            onChange={(e) => {setEmail(e.target.value)}}
-                                            type="email" class="form-control" id="email" />
+
+                                    <div className="col-md-4">
+                                        <label className="form-label">Email</label>
+                                        <div className="input-group has-validation">
+                                            <span className="input-group-text">email</span>
+                                            <input
+                                                onChange={(e) => { setEmail(e.target.value) }}
+                                                type="email" className="form-control" />
 
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <label for="addres" class="form-label">Address</label>
-                                        <input 
-                                        onChange={(e) => {setAddress(e.target.value)}}
-                                        type="text" class="form-control" id="address" />
+                                    <div className="col-md-3">
+                                        <label className="form-label">Address</label>
+                                        <input
+                                            onChange={(e) => { setAddress(e.target.value) }}
+                                            type="text" className="form-control" />
 
                                     </div>
-                                    
-                                    <div class="col-md-3">
-                                        <label for="phone" class="form-label">Phone</label>
-                                        <input 
-                                        onChange={(e) => {setPhone(e.target.value)}}
-                                        type="text" class="form-control" id="phone" />
+                                    <div className="col-md-3">
+                                        <label className="form-label">Tanggal Lahir</label>
+                                        <input
+                                            onChange={(e) => { setTglLahir(e.target.value) }}
+                                            type="text" className="form-control" />
 
                                     </div>
-                                    <div class="col-md-3">
-                                        <label for="photo" class="form-label">Photo Profil</label>
-                                        <input class="form-control" type="file" id="photo"/>
+                                    <div className="col-md-3">
+                                        <label className="form-label">Image</label>
+                                        <input
+                                            onChange={(e) => { setPhoto(e.target.value) }}
+                                            type="text" className="form-control" />
 
                                     </div>
 
-                                    <div class="col-12">
-                                        <button 
-                                        onSubmit={e => {
-                                            e.preventDefault();
-                                            editProfile({variables: {name: nama, email: mail, address: alamat, noHp: noHp}});
-                                           
-                                          }}
-                                        
-                                        class="btn btn-primary" type="submit">Submit form</button>
+                                    <div className="col-md-3">
+                                        <label for="phone" className="form-label">Phone</label>
+                                        <input
+                                            onChange={(e) => { setPhone(e.target.value) }}
+                                            type="text" className="form-control" id="phone" />
+
+                                    </div>
+                                    <div className="col-md-3">
+                                        <label for="photo" className="form-label">Photo Profil</label>
+                                        <input className="form-control" type="file" id="photo" />
+
+                                    </div>
+
+                                    <div className="col-12">
+                                    <button onClick={addData}>Update</button>
                                     </div>
                                 </form>
 
