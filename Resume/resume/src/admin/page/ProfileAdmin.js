@@ -1,9 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {useMutation } from '@apollo/client'
+
 import "../assets/css/sb-admin-2.min.css"
 import NavAdmin from '../component/NavAdmin'
 import Sidebar from "../component/Sidebar"
+import { UPDATE_PROFILE } from '../../GraphQl/Mutation'
 
 const ProfileAdmin = () => {
+    const [nama, setName] = useState("")
+    const [mail, setEmail] = useState("")
+    const [alamat, setAddress] = useState("")
+    const [noHp, setPhone] = useState("")
+    // const [phone, setPhone] = useState("")
+
+    const [editProfile, {data}] = useMutation(UPDATE_PROFILE)
+
+    console.log(editProfile)
+
     return (
         <div>
             <div id="wrapper">
@@ -21,39 +34,36 @@ const ProfileAdmin = () => {
                                 <form class="row g-3">
                                     <div class="col-md-4">
                                         <label for="fisrtName" class="form-label">First name</label>
-                                        <input type="text" class="form-control" id="firstName" />
+                                        <input 
+                                            onChange={(e) => {setName(e.target.value)}}
+                                        
+                                        type="text" class="form-control" id="firstName" />
 
                                     </div>
-                                    <div class="col-md-4">
-                                        <label for="lastName" class="form-label">Last name</label>
-                                        <input type="text" class="form-control" id="lastName" />
-
-                                    </div>
+                                    
                                     <div class="col-md-4">
                                         <label for="email" class="form-label">Email</label>
                                         <div class="input-group has-validation">
                                             <span class="input-group-text" id="email">email</span>
-                                            <input type="email" class="form-control" id="email" />
+                                            <input 
+                                            onChange={(e) => {setEmail(e.target.value)}}
+                                            type="email" class="form-control" id="email" />
 
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="addres" class="form-label">Address</label>
-                                        <input type="text" class="form-control" id="address" />
+                                        <input 
+                                        onChange={(e) => {setAddress(e.target.value)}}
+                                        type="text" class="form-control" id="address" />
 
                                     </div>
-                                    <div class="col-md-3">
-                                        <label for="nationality" class="form-label">Nationality</label>
-                                        <select class="form-select" id="nationality">
-                                            <option selected disabled value="">Choose...</option>
-                                            <option>Indonesia</option>
-                                            <option>Malaysia</option>
-                                        </select>
-
-                                    </div>
+                                    
                                     <div class="col-md-3">
                                         <label for="phone" class="form-label">Phone</label>
-                                        <input type="text" class="form-control" id="phone" />
+                                        <input 
+                                        onChange={(e) => {setPhone(e.target.value)}}
+                                        type="text" class="form-control" id="phone" />
 
                                     </div>
                                     <div class="col-md-3">
@@ -63,7 +73,14 @@ const ProfileAdmin = () => {
                                     </div>
 
                                     <div class="col-12">
-                                        <button class="btn btn-primary" type="submit">Submit form</button>
+                                        <button 
+                                        onSubmit={e => {
+                                            e.preventDefault();
+                                            editProfile({variables: {name: nama, email: mail, address: alamat, noHp: noHp}});
+                                           
+                                          }}
+                                        
+                                        class="btn btn-primary" type="submit">Submit form</button>
                                     </div>
                                 </form>
 

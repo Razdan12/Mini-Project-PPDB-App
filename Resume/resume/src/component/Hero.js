@@ -12,12 +12,19 @@ import portfolio from "../assets/img/svg/briefcase.svg"
 import service from "../assets/img/svg/gear.svg"
 import contact from "../assets/img/svg/letter.svg"
 
+
 import Animasi from './Animasi'
+
 
 
 const Hero = () => {
 
-    const { data } = useQuery(GET_USER)
+    const { data, error } = useQuery(GET_USER)
+
+
+    if (error){
+        return error
+    }
 
     return (
         <div>

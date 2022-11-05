@@ -1,5 +1,5 @@
 import React from "react";
-// import "../assets/css/dark.css";
+// import { useQuery } from '@apollo/client'
 import "../assets/css/style.css"
 
 import About from "../component/About";
@@ -11,9 +11,17 @@ import Footer from "../component/Footer";
 import Header from "../component/Header";
 import Hero from "../component/Hero";
 
+// import {GET_USER } from "../GraphQl/Queries"
+// import Loading from "../component/Loading";
 
 
 const Home = () => {
+    // const {loading} = useQuery(GET_USER)
+
+    // if (loading) {
+    //     return(<Loading/>)
+        
+    // }
     return (
         <div>
             <body>

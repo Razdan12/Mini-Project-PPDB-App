@@ -15,14 +15,9 @@ const Contact = () => {
 	const [subject, setSubject] = useState("")
 	const [message, setMessage] = useState("")
 
-	// const addMessege = () => {
-	// 	nama = name,
-	// 	email = datEmail,
-	// 	phone = datPhone,
-	// 	subject = Subject,
-	// 	message = Message
+	const addMessege = () => {
 
-	// }
+	}
 
 	console.log(addMessege)
 
@@ -126,7 +121,9 @@ const Contact = () => {
 										</textarea>
 									</div>
 									<div className="know_tm_button">
-										<button id="send_message" onClick={addMessege}>Submit Now</button>
+										<button id="send_message" 
+										onClick={() => {addMessege({variables: {name: name, email: datEmail, phone: datPhone, subject: subject, message: message}})}}
+										>Submit Now</button>
 									</div>
 
 								</form>
