@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client'
 import { GET_USER } from '../GraphQl/Queries'
 
 import tumb from "../assets/img/thumbs/47-60.jpg"
+
 import hero from "../assets/img/Foto-KTP-Kartun-removebg-preview.png"
 
 import archive from "../assets/img/svg/archive.svg"
@@ -28,6 +29,7 @@ const Hero = () => {
 
     return (
         <div>
+            
 
             <div className="know_tm_hero">
                 <div className="background_shape"></div>
@@ -48,9 +50,11 @@ const Hero = () => {
                                 </div>
 
                                 <div className="right">
-                                    <div className="image">
-                                        <img src={tumb} alt="" />
-                                        <div className="main" data-img-url={hero}></div>
+                                    
+                                    <div className="imagee">
+                                    {data?.users.map((user) => (
+                                    <img src={user.image} alt="Curious George"  height="400"/>
+                                    ))}
                                     </div>
                                 </div>
                             </div>

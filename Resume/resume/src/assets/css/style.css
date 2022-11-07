@@ -590,8 +590,10 @@ body.dark .loader_line:after{
 	opacity: 0;
 	min-width: 100%;
 }
+
 .know_tm_hero .right .image .main{
 	position: absolute;
+
 	top: 0px;
 	bottom: 0px;
 	left: 0px;

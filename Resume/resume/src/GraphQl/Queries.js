@@ -4,6 +4,7 @@ export const GET_USER = gql`
         query MyQuery {
             users {
                 name
+                image
             }
             about {
                 title
@@ -20,6 +21,7 @@ export const GET_ABOUT = gql`
                 email
                 dob
                 address
+                image
             }
             about {
                 description

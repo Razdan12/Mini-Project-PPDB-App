@@ -1,5 +1,14 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { ImHome, ImEarth } from "react-icons/im";
+import {
+    BsPersonCircle,
+    BsPersonLinesFill,
+    BsStickiesFill,
+    BsFillStarFill,
+    BsPatchCheckFill,
+    BsFillEnvelopeFill
+} from "react-icons/bs";
 import "../assets/css/sb-admin-2.css"
 
 const NavAdmin = () => {
@@ -8,8 +17,8 @@ const NavAdmin = () => {
             <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <Link className="sidebar-brand d-flex align-items-center justify-content-center" to="/">
-                    <div className="sidebar-brand-icon rotate-n-15">
-                        <i className="bi bi-house-door"></i>
+                    <div className="sidebar-brand-icon">
+                        <ImEarth />
                     </div>
                     <div className="sidebar-brand-text mx-3">Portfolio</div>
                 </Link>
@@ -18,8 +27,8 @@ const NavAdmin = () => {
 
                 <li className="nav-item active">
                     <Link className="nav-link" to="/admin">
-                        <i className="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Dashboard</span>
+                        <ImHome />
+                        <span> Dashboard</span>
                     </Link>
                 </li>
 
@@ -30,56 +39,50 @@ const NavAdmin = () => {
                 </div>
 
                 <li className="nav-item">
-                    <Link className="nav-link collapsed" to="/profile" data-toggle="collapse" data-target="#collapseTwo"
-                        aria-expanded="true" aria-controls="collapseTwo">
-                        <i className="fas fa-fw fa-cog"></i>
-                        <span>Profile</span>
+                    <Link className="nav-link collapsed" to="/profile" >
+                        <BsPersonCircle />
+                        <span>  Profile</span>
                     </Link>
                 </li>
 
                 <li className="nav-item">
-                    <Link className="nav-link collapsed" to="/about" data-toggle="collapse" data-target="#collapseUtilities"
-                        aria-expanded="true" aria-controls="collapseUtilities">
-                        <i className="fas fa-fw fa-wrench"></i>
-                        <span>About</span>
+                    <Link className="nav-link collapsed" to="/about" >
+                        <BsPersonLinesFill />
+                        <span>  About</span>
                     </Link>
 
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link collapsed" to="/resume" data-toggle="collapse" data-target="#collapseUtilities"
-                        aria-expanded="true" aria-controls="collapseUtilities">
-                        <i className="fas fa-fw fa-wrench"></i>
-                        <span>Resume</span>
+                    <Link className="nav-link collapsed" to="/resume" >
+                        <BsStickiesFill />
+                        <span>  Resume</span>
                     </Link>
 
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link collapsed" to="/portfolio" data-toggle="collapse" data-target="#collapseUtilities"
-                        aria-expanded="true" aria-controls="collapseUtilities">
-                        <i className="fas fa-fw fa-wrench"></i>
-                        <span>Portfolio</span>
+                    <Link className="nav-link collapsed" to="/portfolio" >
+                        <BsFillStarFill />
+                        <span>  Portfolio</span>
                     </Link>
 
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link collapsed" to="/service" data-toggle="collapse" data-target="#collapseUtilities"
-                        aria-expanded="true" aria-controls="collapseUtilities">
-                        <i className="fas fa-fw fa-wrench"></i>
-                        <span>Service</span>
+                    <Link className="nav-link collapsed" to="/service" >
+                        <BsPatchCheckFill />
+                        <span>  Service</span>
                     </Link>
 
                 </li>
 
                 <li className="nav-item">
-                    <Link className="nav-link collapsed" to="/contact" data-toggle="collapse" data-target="#collapseUtilities"
-                        aria-expanded="true" aria-controls="collapseUtilities">
-                        <i className="fas fa-fw fa-wrench"></i>
-                        <span>Kontak</span>
+                    <Link className="nav-link collapsed" to="/contact">
+                        <BsFillEnvelopeFill />
+                        <span>  Pesan</span>
                     </Link>
 
                 </li>
-                <li >
-                <button type="button" class="btn btn-danger">LOGOUT</button>
+                <li className="nav-item">
+                    <button type="button" class="btn btn-danger">LOGOUT</button>
 
                 </li>
             </ul>

@@ -1,10 +1,12 @@
-import React,{useState} from 'react'
-import { useQuery } from '@apollo/client'
+import React, { useState } from 'react'
+import { useQuery, useMutation } from '@apollo/client'
 import { GET_ABOUT } from '../GraphQl/Queries'
+import { ADD_MESSAGE } from '../GraphQl/Mutation'
 
 import phone from "../assets/img/svg/smartphone.svg"
 import email from "../assets/img/svg/letter.svg"
 import address from "../assets/img/svg/placeholder.svg"
+import { Alert } from 'bootstrap'
 
 const Contact = () => {
 	const { data } = useQuery(GET_ABOUT)
@@ -15,11 +17,28 @@ const Contact = () => {
 	const [subject, setSubject] = useState("")
 	const [message, setMessage] = useState("")
 
-	const addMessege = () => {
+	const [updateData, { error }] = useMutation(ADD_MESSAGE)
+
+
+	if (error){
+        return (
+			Alert(error)
+		)
+    }
+
+	const addMessage = async (e) => {
+		e.preventDefault()
+		await updateData({
+			variables: {
+				email: datEmail,
+				message: message,
+				name: name,
+				phone: datPhone,
+				subject: subject
+			}
+		})
 
 	}
-
-	console.log(addMessege)
 
 	return (
 		<div>
@@ -121,8 +140,8 @@ const Contact = () => {
 										</textarea>
 									</div>
 									<div className="know_tm_button">
-										<button id="send_message" 
-										onClick={() => {addMessege({variables: {name: name, email: datEmail, phone: datPhone, subject: subject, message: message}})}}
+										<button className="btn btn-warning"
+											onClick={addMessage}
 										>Submit Now</button>
 									</div>
 

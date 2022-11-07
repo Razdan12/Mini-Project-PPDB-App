@@ -4028,6 +4028,7 @@ input[type="button"].btn-block {
 
 .nav-link:hover, .nav-link:focus {
   text-decoration: none;
+  background-color: #08b5e0;
 }
 
 .nav-link.disabled {
@@ -4048,7 +4049,7 @@ input[type="button"].btn-block {
 }
 
 .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
-  border-color: #eaecf4 #eaecf4 #dddfeb;
+  border-color: #3a4779 #eaecf4 #dddfeb;
 }
 
 .nav-tabs .nav-link.disabled {
