@@ -5,6 +5,7 @@ import {GET_ABOUT} from '../../GraphQl/Queries'
 import "../assets/css/sb-admin-2.min.css"
 import NavAdmin from '../component/NavAdmin'
 import Sidebar from "../component/Sidebar"
+import Swal from 'sweetalert2'
 
 const AboutAdmin = () => {
     const [title, setTitle] = useState("")
@@ -14,6 +15,14 @@ const AboutAdmin = () => {
 
     const [updateAbout, { error }] = useMutation(UPDATE_ABOUT)
     const { data } = useQuery(GET_ABOUT)
+
+    if (error) {
+        Swal.fire(
+            'Gagal',
+            'Data Gagal Disimpan !',
+            'error'
+          )
+    }
 
     const addData = async (e) => {
         e.preventDefault()
@@ -25,6 +34,11 @@ const AboutAdmin = () => {
                 title: title
             }
         })
+        Swal.fire(
+            'Sukses',
+            'Data Berhasil Disimpan !',
+            'success'
+          )
 
     }
 

@@ -7,7 +7,6 @@ import {
 } from "@apollo/client"
 import {onError} from '@apollo/client/link/error'
 import Home from "./page/Home";
-import Update from "./page/Update"
 import Login from "./component/Form/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import HomeAdmin from "./admin/HomeAdmin";
@@ -15,6 +14,7 @@ import AboutAdmin from "./admin/page/AboutAdmin";
 import ProfileAdmin from "./admin/page/ProfileAdmin";
 import PortfolioAdmin from "./admin/page/PortfolioAdmin";
 import ServiceAdmin from "./admin/page/ServiceAdmin";
+import ResumeAdmin from "./admin/page/ResumeAdmin";
 
 const errorLink = onError(({graphQLErrors}) => {
   if (graphQLErrors){
@@ -50,7 +50,7 @@ function App() {
           <Route path="/profile" element={<ProfileAdmin />} />
           <Route path="/portfolio" element={<PortfolioAdmin />} />
           <Route path="/service" element={<ServiceAdmin />} />
-          <Route path="/update" element={<Update />} />
+          <Route path="/resume" element={<ResumeAdmin />} />
           
         </Routes>
       </BrowserRouter>

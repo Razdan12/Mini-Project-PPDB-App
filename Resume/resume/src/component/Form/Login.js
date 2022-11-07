@@ -1,13 +1,27 @@
 import React from 'react'
 import "./style.css"
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const Login = () => {
+
+  const addData = async (e) => {
+
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Berhasil Login',
+      showConfirmButton: false,
+      timer: 1500
+    })
+
+  }
+
   return (
     <div className="kotakLogin">
-      
+
       <div className="kotakLogin1" >
-        
+
         <div className="loginForm" data-aos="fade-up">
 
           <div className="tab-content">
@@ -56,11 +70,11 @@ const Login = () => {
                 </div>
 
                 <Link to="/admin">
-                  <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
+                  <button onClick={addData} type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
                 </Link>
 
                 {/* <!-- Register buttons --> */}
-                
+
               </form>
             </div>
             <div className="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
@@ -71,18 +85,18 @@ const Login = () => {
         </div>
       </div>
       <div class="elements">
-          <div>.</div>
-          <div>.</div>
-          <div>.</div>
-          <div>.</div>
-          <div>.</div>
-          <div>.</div>
-          <div>.</div>
-          <div>.</div>
-          <div>.</div>
-          <div>.</div>
-          
-        </div>
+        <div>.</div>
+        <div>.</div>
+        <div>.</div>
+        <div>.</div>
+        <div>.</div>
+        <div>.</div>
+        <div>.</div>
+        <div>.</div>
+        <div>.</div>
+        <div>.</div>
+
+      </div>
     </div>
   )
 }

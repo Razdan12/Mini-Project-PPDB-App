@@ -6,6 +6,7 @@ import "../assets/css/sb-admin-2.min.css"
 import NavAdmin from '../component/NavAdmin'
 import Sidebar from "../component/Sidebar"
 import { UPDATE_PROFILE } from '../../GraphQl/Mutation'
+import Swal from 'sweetalert2'
 
 const ProfileAdmin = () => {
     const [nama, setName] = useState("")
@@ -31,6 +32,11 @@ const ProfileAdmin = () => {
                 noHp: phone
             }
         })
+        Swal.fire(
+            'Sukses',
+            'Data Berhasil Disimpan !',
+            'success'
+        )
 
     }
 
@@ -75,55 +81,36 @@ const ProfileAdmin = () => {
                             <div className="col-sm-8 p-2 mt-3">
                                 <div className="card p-4">
                                     <form className="row g-3">
-                                        <div className="col-md-4">
-                                            <label className="form-label">Nama </label>
-                                            <input
-                                                onChange={(e) => { setName(e.target.value) }}
+                                        <div class="col-sm-12 p-2">
 
-                                                type="text" className="form-control" />
+                                            <div class="card p-4">
 
-                                        </div>
-
-                                        <div className="col-md-4">
-                                            <label className="form-label">Email</label>
-                                            <div className="input-group has-validation">
-                                                <span className="input-group-text">email</span>
-                                                <input
-                                                    onChange={(e) => { setEmail(e.target.value) }}
-                                                    type="email" className="form-control" />
-
+                                                <div class="mb-3">
+                                                    <label for="title" class="form-label">Nama</label>
+                                                    <input type="text" class="form-control" onChange={(e) => { setName(e.target.value) }} placeholder="nama" />
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="subTitle" class="form-label">Email</label>
+                                                    <input type="text" class="form-control" onChange={(e) => { setEmail(e.target.value) }} placeholder="email" />
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="subTitle" class="form-label">Alamat</label>
+                                                    <input type="text" class="form-control" onChange={(e) => { setAddress(e.target.value) }} placeholder="email" />
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="subTitle" class="form-label">Nomor Handphone</label>
+                                                    <input type="text" class="form-control" onChange={(e) => { setPhone(e.target.value) }} placeholder="email" />
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="subTitle" class="form-label">Tanggal Lahir ( YYYY-MM-DD )</label>
+                                                    <input type="text" class="form-control" onChange={(e) => { setTglLahir(e.target.value) }} placeholder="email" />
+                                                </div>
+                                                
+                                                
+                            
                                             </div>
-                                        </div>
-                                        <div className="col-md-3">
-                                            <label className="form-label">Address</label>
-                                            <input
-                                                onChange={(e) => { setAddress(e.target.value) }}
-                                                type="text" className="form-control" />
 
                                         </div>
-                                        <div className="col-md-3">
-                                            <label className="form-label">Tanggal Lahir</label>
-                                            <input
-                                                onChange={(e) => { setTglLahir(e.target.value) }}
-                                                type="text" className="form-control" />
-
-                                        </div>
-                                        <div className="col-md-3">
-                                            <label className="form-label">Image</label>
-                                            <input
-                                                onChange={(e) => { setPhoto(e.target.value) }}
-                                                type="text" className="form-control" />
-
-                                        </div>
-
-                                        <div className="col-md-3">
-                                            <label for="phone" className="form-label">Phone</label>
-                                            <input
-                                                onChange={(e) => { setPhone(e.target.value) }}
-                                                type="text" className="form-control" id="phone" />
-
-                                        </div>
-
 
                                         <div className="col-12">
                                             <button onClick={addData} class="btn btn-primary" >Update</button>
