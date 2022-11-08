@@ -1,14 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import { BsPencilSquare, BsFillTrashFill, BsFillPlusCircleFill } from "react-icons/bs";
+import React, { useState } from 'react'
+import { useQuery} from '@apollo/client'
+import { GET_MESSAGE } from '../../GraphQl/Queries'
 
-import Swal from 'sweetalert2'
 import NavAdmin from '../component/NavAdmin'
 import Sidebar from "../component/Sidebar"
+import { BsFillEyeFill, BsFillTrashFill } from "react-icons/bs";
+import Swal from 'sweetalert2'
 
+function Message() {
 
-const PortfolioAdmin = () => {
-    
+    const { data } = useQuery(GET_MESSAGE)
+
     const HandleDelete = () =>{
         return(
             Swal.fire({
@@ -23,7 +25,7 @@ const PortfolioAdmin = () => {
                 if (result.isConfirmed) {
                   Swal.fire(
                     'Deleted!',
-                    'Your file has been deleted.',
+                    'Your data has been deleted.',
                     'success'
                   )
                 }
@@ -32,9 +34,11 @@ const PortfolioAdmin = () => {
         
     }
 
+    const [idx, setIdx] = useState("")
+    console.log(idx)
 
-
-    return (
+  return (
+    <div>
         <div>
             <div id="wrapper">
                 <Sidebar />
@@ -43,7 +47,7 @@ const PortfolioAdmin = () => {
                         <NavAdmin />
                     </div>
                     <div class="ml-4">
-                        <h1 class="h3 mb-0 text-gray-800">Portfolio</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Pesan</h1>
                     </div>
                     <div class="col-lg-12 mb-4">
                         <div class="row">
@@ -52,34 +56,35 @@ const PortfolioAdmin = () => {
                                     <div class="card-body">
 
                                         <div class="col-sm-12 p-2">
-
-                                            <Link to="/add-portofolio">
-                                                <button type="button" class="btn btn-success mb-3"><BsFillPlusCircleFill /></button>
-                                            </Link>
+ 
                                             <table class="table table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col">No</th>
-                                                        <th scope="col">Keterangan</th>
-                                                        <th scope="col">Image</th>
+                                                        <th scope="col">Pengirim</th>
+                                                        <th scope="col">Email</th>
+                                                        <th scope="col">No Hp</th>
+                                                        <th scope="col">Subject</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    {data?.message.map((message) => ( 
                                                     <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
+                                                        <td>{message.name}</td>
+                                                        <td>{message.email}</td>
+                                                        <td>{message.phone}</td>
+                                                        <td>{message.subject}</td>
+                                                        
                                                         <td>
-                                                            <button type="button" class="btn btn-danger" onClick={HandleDelete}><BsFillTrashFill /></button>
-                                                            <Link to="/edit-portofolio">
-                                                                <button type="button" class="btn btn-warning ml-2"><BsPencilSquare /></button>
-                                                            </Link>
+                                                            <button type="button" class="btn btn-danger" onClick={HandleDelete}><BsFillTrashFill/></button>
+                                                            <button type="button" class="btn btn-success ml-2"><BsFillEyeFill/></button>
                                                         </td>
                                                     </tr>
+                                                    
 
-
+                                                    ))}
                                                 </tbody>
+                                               
                                             </table>
 
 
@@ -95,8 +100,11 @@ const PortfolioAdmin = () => {
             </div>
 
             <script src="./assets/js/sb-admin-2.min.js"></script>
-        </div >
-    )
+        </div>
+        
+
+    </div>
+  )
 }
 
-export default PortfolioAdmin
+export default Message

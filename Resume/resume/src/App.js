@@ -15,6 +15,9 @@ import ProfileAdmin from "./admin/page/ProfileAdmin";
 import PortfolioAdmin from "./admin/page/PortfolioAdmin";
 import ServiceAdmin from "./admin/page/ServiceAdmin";
 import ResumeAdmin from "./admin/page/ResumeAdmin";
+import Message from "./admin/page/Message";
+import AddPortfolio from "./admin/page/AddPortfolio";
+import EditPortfolio from "./admin/page/EditPortfolio";
 
 const errorLink = onError(({graphQLErrors}) => {
   if (graphQLErrors){
@@ -51,6 +54,9 @@ function App() {
           <Route path="/portfolio" element={<PortfolioAdmin />} />
           <Route path="/service" element={<ServiceAdmin />} />
           <Route path="/resume" element={<ResumeAdmin />} />
+          <Route path="/message" element={<Message />} />
+          <Route path="/add-portofolio" element={<AddPortfolio />} />
+          <Route path="/edit-portofolio" element={<EditPortfolio />} />
           
         </Routes>
       </BrowserRouter>

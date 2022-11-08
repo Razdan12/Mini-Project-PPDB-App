@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
 import { GET_ABOUT } from '../../GraphQl/Queries'
+import { storage } from "../../Firebase/config"
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
+
 
 import "../assets/css/sb-admin-2.min.css"
 import NavAdmin from '../component/NavAdmin'
 import Sidebar from "../component/Sidebar"
-import { UPDATE_PROFILE } from '../../GraphQl/Mutation'
+import { UPDATE_PROFILE, UPDATE_IMAGE } from '../../GraphQl/Mutation'
 import Swal from 'sweetalert2'
 
 const ProfileAdmin = () => {
@@ -14,13 +17,68 @@ const ProfileAdmin = () => {
     const [alamat, setAddress] = useState("")
     const [phone, setPhone] = useState("")
     const [tglLahir, setTglLahir] = useState("")
-    const [photo, setPhoto] = useState("")
-
-
+    const [image, setPhoto] = useState(null)
     const [updateData, { error }] = useMutation(UPDATE_PROFILE)
+    const [updateImage, { loading }] = useMutation(UPDATE_IMAGE)
     const { data } = useQuery(GET_ABOUT)
+    const [progress, setProgress] = useState(0);
+
+ 
+
+    const HandleImage = (e) => {
+        e.preventDefault()
+        const file = e.target[0].files[0]
+        uploadFiles(file);
+        console.log(file)
+    }
+
+
+    const uploadFiles = (file) => {
+        //
+        if (!file) return;
+        const sotrageRef = ref(storage, `files/${file.name}`);
+        const uploadTask = uploadBytesResumable(sotrageRef, file);
+
+        uploadTask.on(
+              "state_changed",
+              (snapshot) => {
+                const prog = Math.round(
+                  (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                );
+                setProgress(prog);
+              },
+            (error) => console.log(error),
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setPhoto(downloadURL)
+
+                    console.log("File available at", downloadURL);
+                });
+
+            },
+            
+           
+        );
+
+       
+        
+        
+    };
+
+    const addImage = async (e) => {
+        e.preventDefault()
+        await updateImage({
+            variables: {
+                image : image
+
+
+        })
+    }
+
+
 
     const addData = async (e) => {
+
         e.preventDefault()
         await updateData({
             variables: {
@@ -28,9 +86,9 @@ const ProfileAdmin = () => {
                 address: alamat,
                 dob: tglLahir,
                 email: mail,
-                image: photo,
                 noHp: phone
             }
+
         })
         Swal.fire(
             'Sukses',
@@ -59,8 +117,11 @@ const ProfileAdmin = () => {
                                         <div class="card">
                                             <img src={user.image} class="card-img-top " alt="..." />
                                             <div className="col-md-12 mt-4 mb-4">
-                                                <input className="form-control" type="file" id="photo" />
+                                                <form onSubmit={HandleImage}>
 
+                                                    <input className="form-control" type="file" />
+                                                    <button type="submit" class="btn btn-primary" >Update</button>
+                                                </form>
                                             </div>
 
                                             <ul class=" list-group list-group-flush">
@@ -105,9 +166,9 @@ const ProfileAdmin = () => {
                                                     <label for="subTitle" class="form-label">Tanggal Lahir ( YYYY-MM-DD )</label>
                                                     <input type="text" class="form-control" onChange={(e) => { setTglLahir(e.target.value) }} placeholder="email" />
                                                 </div>
-                                                
-                                                
-                            
+
+
+
                                             </div>
 
                                         </div>

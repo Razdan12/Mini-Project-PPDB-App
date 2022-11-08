@@ -69,3 +69,19 @@ export const GET_SERVICE = gql`
   
 
 `
+
+
+export const GET_MESSAGE = gql`
+        query MyQuery {
+            message {
+            email
+            message
+            name
+            phone
+            subject
+            id
+            }
+        }
+  
+
+`

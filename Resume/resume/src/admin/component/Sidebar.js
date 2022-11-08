@@ -75,7 +75,7 @@ const NavAdmin = () => {
                 </li>
 
                 <li className="nav-item">
-                    <Link className="nav-link collapsed" to="/contact">
+                    <Link className="nav-link collapsed" to="/message">
                         <BsFillEnvelopeFill />
                         <span>  Pesan</span>
                     </Link>
