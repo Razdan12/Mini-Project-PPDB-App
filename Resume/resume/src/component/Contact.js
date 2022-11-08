@@ -7,6 +7,7 @@ import phone from "../assets/img/svg/smartphone.svg"
 import email from "../assets/img/svg/letter.svg"
 import address from "../assets/img/svg/placeholder.svg"
 import { Alert } from 'bootstrap'
+import Swal from 'sweetalert2'
 
 const Contact = () => {
 	const { data } = useQuery(GET_ABOUT)
@@ -37,6 +38,11 @@ const Contact = () => {
 				subject: subject
 			}
 		})
+		Swal.fire(
+			'Sukses',
+			'Pesan terkirim, Tunggu Balasan di email kamu !',
+			'success'
+		)
 
 	}
 
@@ -106,7 +112,7 @@ const Contact = () => {
 														setEmail(e.target.value)
 													}}
 													id="email"
-													type="text"
+													type="email"
 													placeholder="Your Email" />
 											</li>
 											<li>

@@ -73,3 +73,13 @@ export const UPDATE_IMAGE = gql`
       }
     }
 `
+
+export const DELETE_MESSAGE = gql`
+    mutation MyMutation($id: Int = 10) {
+      delete_message_by_pk(id: $id) {
+        id
+        email
+        message
+      }
+    }
+`

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { useQuery} from '@apollo/client'
+import { useQuery, useMutation} from '@apollo/client'
 import { GET_MESSAGE } from '../../GraphQl/Queries'
+import { DELETE_MESSAGE } from '../../GraphQl/Mutation'
 
 import NavAdmin from '../component/NavAdmin'
 import Sidebar from "../component/Sidebar"
@@ -9,9 +10,15 @@ import Swal from 'sweetalert2'
 
 function Message() {
 
+    
     const { data } = useQuery(GET_MESSAGE)
+    const [deleteMessage, { error }] = useMutation(DELETE_MESSAGE)
 
+
+
+    const [idx, setIdx] = useState("")
     const HandleDelete = () =>{
+
         return(
             Swal.fire({
                 title: 'Are you sure?',
@@ -23,6 +30,13 @@ function Message() {
                 confirmButtonText: 'Yes, delete it!'
               }).then((result) => {
                 if (result.isConfirmed) {
+
+                    deleteMessage({
+                        variables: {
+                            id: idx
+                        }
+                    })
+
                   Swal.fire(
                     'Deleted!',
                     'Your data has been deleted.',
@@ -34,8 +48,7 @@ function Message() {
         
     }
 
-    const [idx, setIdx] = useState("")
-    console.log(idx)
+   
 
   return (
     <div>
@@ -69,6 +82,7 @@ function Message() {
                                                 </thead>
                                                 <tbody>
                                                     {data?.message.map((message) => ( 
+                                                        
                                                     <tr>
                                                         <td>{message.name}</td>
                                                         <td>{message.email}</td>
@@ -76,7 +90,7 @@ function Message() {
                                                         <td>{message.subject}</td>
                                                         
                                                         <td>
-                                                            <button type="button" class="btn btn-danger" onClick={HandleDelete}><BsFillTrashFill/></button>
+                                                            <button type="button" class="btn btn-danger" onClick={() => { setIdx(message.id), HandleDelete }}><BsFillTrashFill/></button>
                                                             <button type="button" class="btn btn-success ml-2"><BsFillEyeFill/></button>
                                                         </td>
                                                     </tr>
