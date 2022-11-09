@@ -1,13 +1,19 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
+import { useQuery } from '@apollo/client'
+import { GET_USER } from '../GraphQl/Queries'
 
 import logo from "../assets/img/logo/light.png"
 import fb from "../assets/img/svg/social/facebook.svg"
 import tw from "../assets/img/svg/social/twitter.svg"
 import yt from "../assets/img/svg/social/youtube-2.svg"
 import ig from "../assets/img/svg/social/instagram.svg"
+import { Button } from 'bootstrap'
 
 const Header = () => {
+    const { data, error } = useQuery(GET_USER)
+
     return (
         <div>
 
@@ -26,9 +32,11 @@ const Header = () => {
                                     <li><Link to="/"><img className="svg" src={ig} alt="" /></Link></li>
                                 </ul>
                             </div>
+                                {data?.about.map((about) => (
                             <div className="know_tm_button">
-                                <Link to="../assets/img/cv/1.jpg" download="">Download CV</Link>
+                                    <Link to={about.link_cv} download="">Download CV</Link>
                             </div>
+                                ))}
                         </div>
                     </div>
                 </div>

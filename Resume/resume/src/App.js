@@ -18,6 +18,7 @@ import ResumeAdmin from "./admin/page/ResumeAdmin";
 import Message from "./admin/page/Message";
 import AddPortfolio from "./admin/page/AddPortfolio";
 import EditPortfolio from "./admin/page/EditPortfolio";
+import EditResume from "./admin/page/EditResume";
 
 const errorLink = onError(({graphQLErrors}) => {
   if (graphQLErrors){
@@ -57,6 +58,7 @@ function App() {
           <Route path="/message" element={<Message />} />
           <Route path="/add-portofolio" element={<AddPortfolio />} />
           <Route path="/edit-portofolio" element={<EditPortfolio />} />
+          <Route path="/edit-resume" element={<EditResume />} />
           
         </Routes>
       </BrowserRouter>

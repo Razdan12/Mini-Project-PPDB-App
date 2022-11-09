@@ -16,8 +16,16 @@ function Message() {
 
 
 
-    const [idx, setIdx] = useState("")
-    const HandleDelete = () =>{
+
+    const HandleDelete = (idx) =>{
+        const i = data.map((e) =>{
+            return e.id
+        }).indexOf(idx)
+
+        data.splice(idx)
+        
+        console.log("ini adalah id  = " + idx)
+      
 
         return(
             Swal.fire({
@@ -81,7 +89,7 @@ function Message() {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {data?.message.map((message) => ( 
+                                                    {data?.message.map((message, i) => ( 
                                                         
                                                     <tr>
                                                         <td>{message.name}</td>
@@ -90,7 +98,14 @@ function Message() {
                                                         <td>{message.subject}</td>
                                                         
                                                         <td>
-                                                            <button type="button" class="btn btn-danger" onClick={() => { setIdx(message.id), HandleDelete }}><BsFillTrashFill/></button>
+                                                            <button 
+                                                            key = {i}
+                                                            id = {i}
+                                                            type="button" 
+                                                            class="btn btn-danger" 
+                                                            onClick={() => HandleDelete(i) }>
+                                                                <BsFillTrashFill/>
+                                                            </button>
                                                             <button type="button" class="btn btn-success ml-2"><BsFillEyeFill/></button>
                                                         </td>
                                                     </tr>

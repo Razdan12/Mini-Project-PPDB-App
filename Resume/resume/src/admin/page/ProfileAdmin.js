@@ -18,8 +18,8 @@ const ProfileAdmin = () => {
     const [phone, setPhone] = useState("")
     const [tglLahir, setTglLahir] = useState("")
 
-    const [updateData, { error }] = useMutation(UPDATE_PROFILE)
-    const [updateImage, { loading }] = useMutation(UPDATE_IMAGE)
+    const [updateData, { error }] = useMutation(UPDATE_PROFILE, {refetchQueries: [GET_ABOUT]})
+    const [updateImage, { loading }] = useMutation(UPDATE_IMAGE, {refetchQueries: [GET_ABOUT]})
     const { data } = useQuery(GET_ABOUT)
     const [progress, setProgress] = useState(0);
 

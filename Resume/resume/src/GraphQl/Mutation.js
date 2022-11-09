@@ -72,6 +72,8 @@ export const UPDATE_IMAGE = gql`
         affected_rows
       }
     }
+
+
 `
 
 export const DELETE_MESSAGE = gql`
@@ -82,4 +84,14 @@ export const DELETE_MESSAGE = gql`
         message
       }
     }
+`
+
+export const UPLOAD_CV = gql`
+mutation MyMutation($link_cv: String = "") {
+  update_about_by_pk(pk_columns: {id: 1}, _set: {
+    link_cv: $link_cv}) {
+    link_cv
+  }
+}
+
 `
