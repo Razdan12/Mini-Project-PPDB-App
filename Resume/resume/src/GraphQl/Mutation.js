@@ -118,3 +118,76 @@ export const DELETE_SKL = gql`
     }
   }
 `
+
+export const ADD_EDUCATION = gql`
+mutation MyMutation(
+  $description: String = "", 
+  $education: String = "", 
+  $first_year: String = "", 
+  $last_year: String = "", 
+  $sub_description: String = "") {
+    insert_educations_one(object: {
+      description: $description, 
+      education: $education, 
+      first_year: $first_year, 
+      last_year: $last_year, 
+      sub_description: $sub_description}) {
+      id
+  }
+}
+
+
+`
+
+export const ADD_EXPERIENCE = gql`
+  mutation MyMutation(
+    $description: String = "", 
+    $experience: String = "", 
+    $first_year: String = "", 
+    $last_year: String = "", 
+    $sub_desk: String = "", 
+    $workplace: String = "") {
+    insert_experience_one(object: {
+      description: $description, 
+      experience: $experience, 
+      first_year: $first_year, 
+      last_year: $last_year, 
+      sub_desk: $sub_desk, 
+      workplace: $workplace}) {
+      id
+    }
+  }
+`
+
+export const ADD_SKILLS = gql`
+mutation MyMutation(
+  $name_skill: String = "", 
+  $range: String = "") {
+  insert_skills_one(object: {
+    name_skill: $name_skill, 
+    range: $range}) {
+    id
+  }
+}
+`
+
+export const EDIT_EDUCATION = gql`
+  mutation MyMutation(
+    $id: Int = 10, 
+    $description: String = "", 
+    $education: String = "", 
+    $first_year: String = "", 
+    $last_year: String = "", 
+    $sub_description: String = "") {
+    update_educations_by_pk(pk_columns: {id: $id}, _set: {
+      description: $description, 
+      education: $education, 
+      first_year: $first_year, 
+      last_year: $last_year, 
+      sub_description: $sub_description}) {
+      id
+      education
+      first_year
+    }
+  }
+`

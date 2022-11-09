@@ -1,9 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
+import {useMutation } from '@apollo/client'
+import { ADD_EXPERIENCE } from '../../../GraphQl/Mutation'
 import NavAdmin from '../../component/NavAdmin'
 import Sidebar from "../../component/Sidebar"
-
+import Swal from 'sweetalert2'
 
 const AddExperience = () => {
+    const [description, setDeskripsi] = useState("")
+    const [experience, setExperience] = useState("")
+    const [workplace, setWorkplace] = useState("")
+    const [first, setFirst] = useState("")
+    const [Last, setLast] = useState("")
+    const [sub, setSub] = useState("")
+
+    const [AddExperience, {Loading}] = useMutation(ADD_EXPERIENCE)
+    
+    const addExp = async (e) => {
+		e.preventDefault()
+		await AddExperience({
+			variables: {
+                description:  description,
+				experience: experience,
+				first_year: first,
+				last_year: Last,
+				sub_desk: sub,
+				workplace: workplace
+			}
+		})
+		Swal.fire(
+			'Sukses',
+			'Data Berhasil Disimpan !',
+			'success'
+		)
+
+	}
+
   return (
 
         <div>
@@ -23,34 +54,62 @@ const AddExperience = () => {
 
                                 <div class="mb-3">
                                     <label class="form-label">Experience</label>
-                                    <input type="text" class="form-control"  />
+                                    <input 
+                                    type="text" 
+                                    class="form-control"
+                                    onChange={(e) =>{
+                                        setExperience(e.target.value)
+                                    }}  />
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Sub-Deskription</label>
-                                    <input type="text" class="form-control"  />
+                                    <input 
+                                    type="text" 
+                                    class="form-control"
+                                    onChange={(e) =>{
+                                        setSub(e.target.value)
+                                    }}  />
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Workplace</label>
-                                    <input type="text" class="form-control"  />
+                                    <input 
+                                    type="text" 
+                                    class="form-control"
+                                    onChange={(e) =>{
+                                        setWorkplace(e.target.value)
+                                    }}  />
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">First Year</label>
-                                    <input type="text" class="form-control"  />
+                                    <input 
+                                    type="text" 
+                                    class="form-control"
+                                    onChange={(e) =>{
+                                        setFirst(e.target.value)
+                                    }}  />
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Last Year</label>
-                                    <input type="text" class="form-control"  />
+                                    <input 
+                                    type="text" 
+                                    class="form-control"
+                                    onChange={(e) =>{
+                                        setLast(e.target.value)
+                                    }}  />
                                 </div>
                                 
                                 <div class="mb-3">
                                     <label class="form-label">Deskription</label>
-                                    <textarea class="form-control" ></textarea>
+                                    <textarea class="form-control" 
+                                    onChange={(e) =>{
+                                        setDeskripsi(e.target.value)
+                                    }}></textarea>
                                 </div>
                                
-                                <button class="btn btn-primary" >Simpan</button>
+                                <button class="btn btn-primary" onClick={addExp}>Simpan</button>
                             </div>
                            
                         </div>

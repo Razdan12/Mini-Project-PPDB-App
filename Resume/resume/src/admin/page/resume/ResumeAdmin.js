@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useQuery, useMutation } from '@apollo/client'
 import { GET_EDUCATIONS, GET_EXPERIENCE, GET_SKILLS } from '../../../GraphQl/Queries'
 import { DELETE_EDUCATION , DELETE_EXP, DELETE_SKL} from '../../../GraphQl/Mutation'

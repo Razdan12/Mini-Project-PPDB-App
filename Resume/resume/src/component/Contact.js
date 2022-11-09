@@ -10,14 +10,14 @@ import { Alert } from 'bootstrap'
 import Swal from 'sweetalert2'
 
 const Contact = () => {
-	const { data } = useQuery(GET_ABOUT)
-
+	
 	const [name, setName] = useState("")
 	const [datEmail, setEmail] = useState("")
 	const [datPhone, setPhone] = useState("")
 	const [subject, setSubject] = useState("")
 	const [message, setMessage] = useState("")
-
+	
+	const { data } = useQuery(GET_ABOUT)
 	const [updateData, { error }] = useMutation(ADD_MESSAGE)
 
 

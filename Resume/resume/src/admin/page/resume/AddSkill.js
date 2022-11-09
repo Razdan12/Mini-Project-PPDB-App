@@ -1,9 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
+import {useMutation } from '@apollo/client'
+import { ADD_SKILLS } from '../../../GraphQl/Mutation'
 import NavAdmin from '../../component/NavAdmin'
 import Sidebar from "../../component/Sidebar"
-
+import Swal from 'sweetalert2'
 
 const AddSkill = () => {
+
+    const [skill, setSkill] = useState("")
+    const [range, setRange] = useState("")
+
+    const [AddSkl, { Loading }] = useMutation(ADD_SKILLS)
+
+    const addSkill = async (e) => {
+		e.preventDefault()
+		await AddSkl({
+			variables: {
+                name_skill:  skill,
+				range: range
+				
+			}
+		})
+		Swal.fire(
+			'Sukses',
+			'Data Berhasil Disimpan !',
+			'success'
+		)
+
+	}
+
   return (
     <div>
             <div id="wrapper">
@@ -21,23 +46,30 @@ const AddSkill = () => {
                             <div class="card p-4">
 
                                 <div class="mb-3">
-                                    <label class="form-label">Title</label>
-                                    <input type="text" class="form-control"  />
+                                    <label class="form-label">Skill</label>
+                                    <input 
+                                    type="text" 
+                                    class="form-control"
+                                    onChange={(e) =>{
+                                        setSkill(e.target.value)
+                                    }}  />
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">First Year</label>
-                                    <input type="text" class="form-control"  />
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Last Year</label>
-                                    <input type="text" class="form-control"  />
+                                    <label class="form-label">Range</label>
+                                    <input 
+                                    type="text" 
+                                    class="form-control"
+                                    onChange={(e) =>{
+                                        setRange(e.target.value)
+                                    }}  />
                                 </div>
 
                                 
+
+                                
                                
-                                <button class="btn btn-primary" >Simpan</button>
+                                <button class="btn btn-primary" onClick={addSkill}>Simpan</button>
                             </div>
                            
                         </div>
