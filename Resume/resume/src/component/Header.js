@@ -32,11 +32,11 @@ const Header = () => {
                                     <li><Link to="/"><img className="svg" src={ig} alt="" /></Link></li>
                                 </ul>
                             </div>
-                                {data?.about.map((about) => (
-                            <div className="know_tm_button">
-                                    <Link to={about.link_cv} download="">Download CV</Link>
-                            </div>
-                                ))}
+                            {data?.about.map((about) => (
+                                <div className="know_tm_button">
+                                    <a href={about.link_cv} download={about.link_cv}>Download CV</a>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>

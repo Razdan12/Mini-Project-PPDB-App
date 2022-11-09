@@ -8,7 +8,7 @@ import Sidebar from "../component/Sidebar"
 import Swal from 'sweetalert2'
 import { storage } from "../../Firebase/config"
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
-
+import Loading from '../../component/Loading'
 
 const AboutAdmin = () => {
 
@@ -17,9 +17,14 @@ const AboutAdmin = () => {
     const [deskripsi, setDeskripsi] = useState("")
     const [progress, setProgress] = useState(0);
 
-    const { data } = useQuery(GET_ABOUT)
-    const [updateAbout, { error }] = useMutation(UPDATE_ABOUT, { refetchQueries: [GET_ABOUT] })
-    const [upload, { error:UPLOAD }] = useMutation(UPLOAD_CV, { refetchQueries: [GET_ABOUT] })
+    const { data , loading : dataLoading} = useQuery(GET_ABOUT)
+    const [updateAbout, { error, loading : updateLoading }] = useMutation(UPDATE_ABOUT, { refetchQueries: [GET_ABOUT] })
+    const [upload, { error: uploadError, loading: uploadLoading}] = useMutation(UPLOAD_CV, { refetchQueries: [GET_ABOUT] })
+    
+    if (updateLoading || dataLoading || uploadLoading){
+        return <Loading/>
+    }
+
 
     if (error) {
         Swal.fire(

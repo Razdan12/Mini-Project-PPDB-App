@@ -1,6 +1,6 @@
 import React from 'react'
-import NavAdmin from '../component/NavAdmin'
-import Sidebar from "../component/Sidebar"
+import NavAdmin from '../../component/NavAdmin'
+import Sidebar from "../../component/Sidebar"
 import Swal from 'sweetalert2'
 import { Link } from 'react-router-dom';
 import { BsPencilSquare, BsFillTrashFill, BsFillPlusCircleFill } from "react-icons/bs";
@@ -52,7 +52,7 @@ const ResumeAdmin = () => {
                                         <div class="col-sm-12 p-2">
 
                                             <h2>Education</h2>
-                                            <Link to="/add-portofolio">
+                                            <Link to="/add-education">
                                                 <button type="button" class="btn btn-success mb-3"><BsFillPlusCircleFill /></button>
                                             </Link>
                                             <table class="table table-striped">
@@ -71,8 +71,8 @@ const ResumeAdmin = () => {
                                                         <td>Otto</td>
                                                         <td>
                                                             <button type="button" class="btn btn-danger" onClick={HandleDelete}><BsFillTrashFill /></button>
-                                                            <Link to="/edit-resume">
-                                                                <button type="button" class="btn btn-warning ml-2"><BsPencilSquare /></button>
+                                                            <Link to="/edit-education">
+                                                                <button type="button" class="btn btn-warning ml-2 "><BsPencilSquare /></button>
                                                             </Link>
                                                         </td>
                                                     </tr>
@@ -99,7 +99,7 @@ const ResumeAdmin = () => {
                                         <div class="col-sm-12 p-2">
 
                                             <h2>Experience</h2>
-                                            <Link to="/add-portofolio">
+                                            <Link to="/add-experience">
                                                 <button type="button" class="btn btn-success mb-3"><BsFillPlusCircleFill /></button>
                                             </Link>
                                             <table class="table table-striped">
@@ -118,7 +118,7 @@ const ResumeAdmin = () => {
                                                         <td>Otto</td>
                                                         <td>
                                                             <button type="button" class="btn btn-danger" onClick={HandleDelete}><BsFillTrashFill /></button>
-                                                            <Link to="/edit-resume">
+                                                            <Link to="/edit-experience">
                                                                 <button type="button" class="btn btn-warning ml-2"><BsPencilSquare /></button>
                                                             </Link>
                                                         </td>
@@ -146,7 +146,7 @@ const ResumeAdmin = () => {
                                         <div class="col-sm-12 p-2">
 
                                             <h2>Skills</h2>
-                                            <Link to="/add-portofolio">
+                                            <Link to="/add-skill">
                                                 <button type="button" class="btn btn-success mb-3"><BsFillPlusCircleFill /></button>
                                             </Link>
                                             <table class="table table-striped">
@@ -165,7 +165,7 @@ const ResumeAdmin = () => {
                                                         <td>Otto</td>
                                                         <td>
                                                             <button type="button" class="btn btn-danger" onClick={HandleDelete}><BsFillTrashFill /></button>
-                                                            <Link to="/edit-resume">
+                                                            <Link to="/edit-skill">
                                                                 <button type="button" class="btn btn-warning ml-2"><BsPencilSquare /></button>
                                                             </Link>
                                                         </td>

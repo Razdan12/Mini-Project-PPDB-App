@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { BsPencilSquare, BsFillTrashFill, BsFillPlusCircleFill } from "react-icons/bs";
 
 import Swal from 'sweetalert2'
-import NavAdmin from '../component/NavAdmin'
-import Sidebar from "../component/Sidebar"
+import NavAdmin from '../../component/NavAdmin'
+import Sidebar from "../../component/Sidebar"
 
 
 const PortfolioAdmin = () => {

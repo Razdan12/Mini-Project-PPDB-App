@@ -10,6 +10,7 @@ import Sidebar from "../component/Sidebar"
 import { UPDATE_PROFILE, UPDATE_IMAGE } from '../../GraphQl/Mutation'
 import Swal from 'sweetalert2'
 import { BsFillCloudUploadFill } from "react-icons/bs";
+import Loading from '../../component/Loading'
 
 const ProfileAdmin = () => {
     const [nama, setName] = useState("")
@@ -18,10 +19,15 @@ const ProfileAdmin = () => {
     const [phone, setPhone] = useState("")
     const [tglLahir, setTglLahir] = useState("")
 
-    const [updateData, { error }] = useMutation(UPDATE_PROFILE, {refetchQueries: [GET_ABOUT]})
-    const [updateImage, { loading }] = useMutation(UPDATE_IMAGE, {refetchQueries: [GET_ABOUT]})
-    const { data } = useQuery(GET_ABOUT)
+    const [updateData, { loading : userLoading }] = useMutation(UPDATE_PROFILE, {refetchQueries: [GET_ABOUT]})
+    const [updateImage, { loading : updateLoading }] = useMutation(UPDATE_IMAGE, {refetchQueries: [GET_ABOUT]})
+    const { data, loading : dataLoading } = useQuery(GET_ABOUT)
     const [progress, setProgress] = useState(0);
+
+
+    if (userLoading || updateLoading || dataLoading){
+        return <Loading/>
+    }
 
     const HandleImage = (e) => {
         e.preventDefault()

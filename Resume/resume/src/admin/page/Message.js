@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useQuery, useMutation} from '@apollo/client'
 import { GET_MESSAGE } from '../../GraphQl/Queries'
 import { DELETE_MESSAGE } from '../../GraphQl/Mutation'
@@ -7,14 +7,18 @@ import NavAdmin from '../component/NavAdmin'
 import Sidebar from "../component/Sidebar"
 import { BsFillEyeFill, BsFillTrashFill } from "react-icons/bs";
 import Swal from 'sweetalert2'
+import Loading from '../../component/Loading'
 
 function Message() {
 
     
-    const { data } = useQuery(GET_MESSAGE)
+    const { data , loading} = useQuery(GET_MESSAGE)
     const [deleteMessage, { error }] = useMutation(DELETE_MESSAGE)
 
 
+    if (loading){
+        return <Loading/>
+    }
 
 
     const HandleDelete = (idx) =>{

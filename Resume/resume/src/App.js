@@ -5,6 +5,7 @@ import {
   ApolloProvider,
 
 } from "@apollo/client"
+
 import {onError} from '@apollo/client/link/error'
 import Home from "./page/Home";
 import Login from "./component/Form/Login";
@@ -12,13 +13,20 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import HomeAdmin from "./admin/HomeAdmin";
 import AboutAdmin from "./admin/page/AboutAdmin";
 import ProfileAdmin from "./admin/page/ProfileAdmin";
-import PortfolioAdmin from "./admin/page/PortfolioAdmin";
-import ServiceAdmin from "./admin/page/ServiceAdmin";
-import ResumeAdmin from "./admin/page/ResumeAdmin";
+import PortfolioAdmin from "./admin/page/portfolio/PortfolioAdmin";
+import ServiceAdmin from "./admin/page/service/ServiceAdmin";
+import ResumeAdmin from "./admin/page/resume/ResumeAdmin";
 import Message from "./admin/page/Message";
-import AddPortfolio from "./admin/page/AddPortfolio";
-import EditPortfolio from "./admin/page/EditPortfolio";
-import EditResume from "./admin/page/EditResume";
+import AddPortfolio from "./admin/page/portfolio/AddPortfolio";
+import EditPortfolio from "./admin/page/portfolio/EditPortfolio";
+import EditEducation from "./admin/page/resume/EditEducation";
+import AddEducation from "./admin/page/resume/AddEducation";
+import EditExperience from "./admin/page/resume/EditExperience";
+import AddExperience from "./admin/page/resume/AddExperience";
+import AddSkill from "./admin/page/resume/AddSkill";
+import Editskill from "./admin/page/resume/EditSkill";
+import EditService from "./admin/page/service/EditService";
+import AddService from "./admin/page/service/AddService";
 
 const errorLink = onError(({graphQLErrors}) => {
   if (graphQLErrors){
@@ -58,7 +66,14 @@ function App() {
           <Route path="/message" element={<Message />} />
           <Route path="/add-portofolio" element={<AddPortfolio />} />
           <Route path="/edit-portofolio" element={<EditPortfolio />} />
-          <Route path="/edit-resume" element={<EditResume />} />
+          <Route path="/edit-education" element={<EditEducation />} />
+          <Route path="/add-education" element={<AddEducation />} />
+          <Route path="/edit-experience" element={<EditExperience />} />
+          <Route path="/add-experience" element={<AddExperience />} />
+          <Route path="/add-skill" element={<AddSkill />} />
+          <Route path="/edit-skill" element={<Editskill />} />
+          <Route path="/edit-service" element={<EditService />} />
+          <Route path="/add-service" element={<AddService />} />
           
         </Routes>
       </BrowserRouter>
