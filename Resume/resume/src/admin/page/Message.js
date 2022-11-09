@@ -12,25 +12,17 @@ import Loading from '../../component/Loading'
 function Message() {
 
     
-    const { data , loading} = useQuery(GET_MESSAGE)
-    const [deleteMessage, { error }] = useMutation(DELETE_MESSAGE)
+    const { data , loading : loadingData} = useQuery(GET_MESSAGE)
+    const [deleteMessage, { loading : LoadingDelete }] = useMutation(DELETE_MESSAGE, {refetchQueries: [GET_MESSAGE]})
 
 
-    if (loading){
+    if (loadingData || LoadingDelete) {
         return <Loading/>
     }
 
 
     const HandleDelete = (idx) =>{
-        const i = data.map((e) =>{
-            return e.id
-        }).indexOf(idx)
-
-        data.splice(idx)
         
-        console.log("ini adalah id  = " + idx)
-      
-
         return(
             Swal.fire({
                 title: 'Are you sure?',
@@ -107,7 +99,7 @@ function Message() {
                                                             id = {i}
                                                             type="button" 
                                                             class="btn btn-danger" 
-                                                            onClick={() => HandleDelete(i) }>
+                                                            onClick={() => HandleDelete(message.id) }>
                                                                 <BsFillTrashFill/>
                                                             </button>
                                                             <button type="button" class="btn btn-success ml-2"><BsFillEyeFill/></button>

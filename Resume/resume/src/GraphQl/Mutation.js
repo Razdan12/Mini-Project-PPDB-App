@@ -95,3 +95,26 @@ mutation MyMutation($link_cv: String = "") {
 }
 
 `
+export const DELETE_EDUCATION = gql`
+  mutation MyMutation($id: Int = 10) {
+    delete_educations_by_pk(id: $id) {
+      id
+    }
+  }
+`
+
+export const DELETE_EXP = gql`
+  mutation MyMutation($id: Int = 10) {
+    delete_experience_by_pk(id: $id) {
+      id
+    }
+  }
+`
+
+export const DELETE_SKL = gql`
+  mutation MyMutation($id: Int = 10) {
+    delete_skills_by_pk(id: $id) {
+      id
+    }
+  }
+`

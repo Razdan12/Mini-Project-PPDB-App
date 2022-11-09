@@ -30,7 +30,7 @@ import AddService from "./admin/page/service/AddService";
 
 const errorLink = onError(({graphQLErrors}) => {
   if (graphQLErrors){
-    graphQLErrors.map(({message}) => {
+    graphQLErrors?.map(({message}) => {
       alert(`Graph Ql Eror ${message}`)
     })
   }

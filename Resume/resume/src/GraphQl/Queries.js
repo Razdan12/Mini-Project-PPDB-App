@@ -85,3 +85,42 @@ export const GET_MESSAGE = gql`
   
 
 `
+
+export const GET_EDUCATIONS = gql`
+
+        query MyQuery {
+            educations {
+            description
+            education
+            first_year
+            last_year
+            sub_description
+            id
+            }
+        }
+  
+`
+
+export const GET_EXPERIENCE = gql`
+    query MyQuery {
+        experience {
+        description
+        experience
+        first_year
+        id
+        last_year
+        workplace
+        }
+    }
+  
+`
+
+export const GET_SKILLS = gql`
+    query MyQuery {
+        skills {
+        name_skill
+        id
+        range
+        }
+    }
+`

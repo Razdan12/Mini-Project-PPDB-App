@@ -19,7 +19,7 @@ const AboutAdmin = () => {
 
     const { data , loading : dataLoading} = useQuery(GET_ABOUT)
     const [updateAbout, { error, loading : updateLoading }] = useMutation(UPDATE_ABOUT, { refetchQueries: [GET_ABOUT] })
-    const [upload, { error: uploadError, loading: uploadLoading}] = useMutation(UPLOAD_CV, { refetchQueries: [GET_ABOUT] })
+    const [upload, { loading: uploadLoading}] = useMutation(UPLOAD_CV, { refetchQueries: [GET_ABOUT] })
     
     if (updateLoading || dataLoading || uploadLoading){
         return <Loading/>

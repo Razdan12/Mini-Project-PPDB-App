@@ -1,13 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useQuery, useMutation } from '@apollo/client'
+import { GET_EDUCATIONS, GET_EXPERIENCE, GET_SKILLS } from '../../../GraphQl/Queries'
+import { DELETE_EDUCATION , DELETE_EXP, DELETE_SKL} from '../../../GraphQl/Mutation'
 import NavAdmin from '../../component/NavAdmin'
 import Sidebar from "../../component/Sidebar"
 import Swal from 'sweetalert2'
 import { Link } from 'react-router-dom';
+import Loading from '../../../component/Loading'
 import { BsPencilSquare, BsFillTrashFill, BsFillPlusCircleFill } from "react-icons/bs";
 
 
 const ResumeAdmin = () => {
-    const HandleDelete = () =>{
+
+
+    const { data :dataEdu, loading : dataLoading } = useQuery(GET_EDUCATIONS)
+    const { data :dataExp, loading : LoadingExp } = useQuery(GET_EXPERIENCE)
+    const { data :dataSkl, loading : LoadingSkl } = useQuery(GET_SKILLS)
+    const [deleteEdu, { loading : LoadingDelete }] = useMutation(DELETE_EDUCATION, {refetchQueries: [GET_EDUCATIONS]})
+    const [deleteExp, { loading : deleteExpe }] = useMutation(DELETE_EXP, {refetchQueries: [GET_EXPERIENCE]})
+    const [deleteSkl, { loading : deleteSkle }] = useMutation(DELETE_SKL, {refetchQueries: [GET_SKILLS]})
+   
+   if (
+    dataLoading || 
+    LoadingExp || 
+    LoadingSkl || 
+    LoadingDelete || 
+    deleteExpe ||  
+    deleteSkle){
+        return(Loading)
+
+   }
+
+    const HandleDeleteEdu = (idx) =>{
         return(
             Swal.fire({
                 title: 'Are you sure?',
@@ -19,6 +43,73 @@ const ResumeAdmin = () => {
                 confirmButtonText: 'Yes, delete it!'
               }).then((result) => {
                 if (result.isConfirmed) {
+                    
+                    deleteEdu({
+                        variables: {
+                            id: idx
+                        }
+                    })
+
+                  Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                  )
+                }
+              })
+        )
+        
+    }
+
+    const HandleDeleteExp = (idx) =>{
+        return(
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    
+                    deleteExp({
+                        variables: {
+                            id: idx
+                        }
+                    })
+
+                  Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                  )
+                }
+              })
+        )
+        
+    }
+
+    const HandleDeleteSkl = (idx) =>{
+        return(
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    
+                    deleteSkl({
+                        variables: {
+                            id: idx
+                        }
+                    })
+
                   Swal.fire(
                     'Deleted!',
                     'Your file has been deleted.',
@@ -59,23 +150,34 @@ const ResumeAdmin = () => {
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">No</th>
-                                                        <th scope="col">Keterangan</th>
-                                                        <th scope="col">Image</th>
+                                                        <th scope="col">Education</th>
+                                                        <th scope="col">Tahun</th>
+                                                        <th scope="col">Jurusan</th>
+                                                        <th scope="col">Deskription</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                {dataEdu?.educations.map((edu, i) => (
                                                     <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
+                                                        <th scope="row">{i+1}</th>
+                                                        <td>{edu.education}</td>
+                                                        <td>{edu.first_year} - {edu.last_year}</td>
+                                                        <td>{edu.description}</td>
+                                                        <td>{edu.sub_description}</td>
                                                         <td>
-                                                            <button type="button" class="btn btn-danger" onClick={HandleDelete}><BsFillTrashFill /></button>
+                                                            <button 
+                                                            type="button" 
+                                                            class="btn btn-danger" 
+                                                            onClick={() => HandleDeleteEdu(edu.id) }>
+                                                                <BsFillTrashFill />
+                                                            </button>
                                                             <Link to="/edit-education">
                                                                 <button type="button" class="btn btn-warning ml-2 "><BsPencilSquare /></button>
                                                             </Link>
                                                         </td>
                                                     </tr>
+                                                    ))}
 
 
                                                 </tbody>
@@ -106,23 +208,33 @@ const ResumeAdmin = () => {
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">No</th>
-                                                        <th scope="col">Keterangan</th>
-                                                        <th scope="col">Image</th>
-                                                        <th scope="col">Action</th>
+                                                        <th scope="col">Experience</th>
+                                                        <th scope="col">Workplace</th>
+                                                        <th scope="col">Deskription</th>
+                                                        <th scope="col">Tahun</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                {dataExp?.experience.map((exp, i) => (
                                                     <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
+                                                        <th scope="row">{i+1}</th>
+                                                        <td>{exp.experience}</td>
+                                                        <td>{exp.workplace}</td>
+                                                        <td>{exp.description}</td>
+                                                        <td>{exp.first_year} - {exp.last_year}</td>
                                                         <td>
-                                                            <button type="button" class="btn btn-danger" onClick={HandleDelete}><BsFillTrashFill /></button>
+                                                        <button 
+                                                            type="button" 
+                                                            class="btn btn-danger" 
+                                                            onClick={() => HandleDeleteExp(exp.id) }>
+                                                                <BsFillTrashFill />
+                                                            </button>
                                                             <Link to="/edit-experience">
                                                                 <button type="button" class="btn btn-warning ml-2"><BsPencilSquare /></button>
                                                             </Link>
                                                         </td>
                                                     </tr>
+                                                    ))}
 
 
                                                 </tbody>
@@ -151,25 +263,34 @@ const ResumeAdmin = () => {
                                             </Link>
                                             <table class="table table-striped">
                                                 <thead>
+                                                
                                                     <tr>
                                                         <th scope="col">No</th>
-                                                        <th scope="col">Keterangan</th>
-                                                        <th scope="col">Image</th>
+                                                        <th scope="col">Skill</th>
+                                                        <th scope="col">Range</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
+                                                     
                                                 </thead>
                                                 <tbody>
+                                                {dataSkl?.skills.map((skl, i) => (
                                                     <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
+                                                        <th scope="row">{i+1}</th>
+                                                        <td>{skl.name_skill}</td>
+                                                        <td>{skl.range} %</td>
                                                         <td>
-                                                            <button type="button" class="btn btn-danger" onClick={HandleDelete}><BsFillTrashFill /></button>
+                                                        <button 
+                                                            type="button" 
+                                                            class="btn btn-danger" 
+                                                            onClick={() => HandleDeleteSkl(skl.id) }>
+                                                                <BsFillTrashFill />
+                                                            </button>
                                                             <Link to="/edit-skill">
                                                                 <button type="button" class="btn btn-warning ml-2"><BsPencilSquare /></button>
                                                             </Link>
                                                         </td>
                                                     </tr>
+                                                    ))}
 
 
                                                 </tbody>
