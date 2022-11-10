@@ -1,13 +1,16 @@
-import React from 'react'
 import { Link } from 'react-router-dom';
 import { BsPencilSquare, BsFillTrashFill, BsFillPlusCircleFill } from "react-icons/bs";
-
+import React, { useState } from "react";
+import { useQuery, useMutation } from "@apollo/client";
+import { GET_PORTFOLIO } from "../../../GraphQl/Queries";
 import Swal from 'sweetalert2'
 import NavAdmin from '../../component/NavAdmin'
 import Sidebar from "../../component/Sidebar"
+import "./portfolio.css"
 
-
+ 
 const PortfolioAdmin = () => {
+    const { data} = useQuery(GET_PORTFOLIO);
     
     const HandleDelete = () =>{
         return(
@@ -66,10 +69,13 @@ const PortfolioAdmin = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                {data?.portfolio.map((port, i) => (
                                                     <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
+                                                        <th scope="row">{i+1}</th>
+                                                        <td>{port.name}</td>
+                                                        <td>
+                                                            <img className='imagePort' src={port.image}/>
+                                                        </td>
                                                         <td>
                                                             <button type="button" class="btn btn-danger" onClick={HandleDelete}><BsFillTrashFill /></button>
                                                             <Link to="/edit-portofolio">
@@ -77,6 +83,7 @@ const PortfolioAdmin = () => {
                                                             </Link>
                                                         </td>
                                                     </tr>
+                                                ))}
 
 
                                                 </tbody>

@@ -130,6 +130,9 @@ export const GET_PORTFOLIO = gql`
         portfolio {
         name
         image
+        id
         }
     }
   `
+
+ 
