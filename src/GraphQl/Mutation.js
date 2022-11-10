@@ -217,3 +217,23 @@ mutation MyMutation($id: Int = 10,
 }
 
 `
+
+export const ADD_PORTFOLIO = gql`
+mutation MyMutation($image: String = "", $name: String = "", $url: String = "") {
+  insert_portfolio_one(object: {image: $image, name: $name, url: $url}) {
+    id
+    image
+    name
+    url
+  }
+}
+`
+
+export const DELETE_PORTFOLIO = gql`
+mutation MyMutation($id: Int = 10) {
+  delete_portfolio_by_pk(id: $id) {
+    id
+    image
+  }
+}
+`

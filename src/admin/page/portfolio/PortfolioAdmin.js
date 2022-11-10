@@ -3,16 +3,24 @@ import { BsPencilSquare, BsFillTrashFill, BsFillPlusCircleFill } from "react-ico
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_PORTFOLIO } from "../../../GraphQl/Queries";
+import { DELETE_PORTFOLIO } from "../../../GraphQl/Mutation";
 import Swal from 'sweetalert2'
 import NavAdmin from '../../component/NavAdmin'
 import Sidebar from "../../component/Sidebar"
 import "./portfolio.css"
-
+import Loading from "../../../component/Loading";
  
 const PortfolioAdmin = () => {
-    const { data} = useQuery(GET_PORTFOLIO);
+    const { data, loading: getLoading} = useQuery(GET_PORTFOLIO);
+    const [deletePort, { loading: deleteExpe }] = useMutation(DELETE_PORTFOLIO , {
+        refetchQueries: [GET_PORTFOLIO],
+      });
+
+      if ( getLoading ) {
+        return <Loading/>;
+      }
     
-    const HandleDelete = () =>{
+    const HandleDelete = (idx) =>{
         return(
             Swal.fire({
                 title: 'Are you sure?',
@@ -24,6 +32,12 @@ const PortfolioAdmin = () => {
                 confirmButtonText: 'Yes, delete it!'
               }).then((result) => {
                 if (result.isConfirmed) {
+                    deletePort({
+                        variables: {
+                          id: idx,
+                        },
+                      });
+
                   Swal.fire(
                     'Deleted!',
                     'Your file has been deleted.',
@@ -77,7 +91,7 @@ const PortfolioAdmin = () => {
                                                             <img className='imagePort' src={port.image}/>
                                                         </td>
                                                         <td>
-                                                            <button type="button" class="btn btn-danger" onClick={HandleDelete}><BsFillTrashFill /></button>
+                                                            <button type="button" class="btn btn-danger" onClick={() => HandleDelete(port.id)}><BsFillTrashFill /></button>
                                                             <Link to="/edit-portofolio">
                                                                 <button type="button" class="btn btn-warning ml-2"><BsPencilSquare /></button>
                                                             </Link>
