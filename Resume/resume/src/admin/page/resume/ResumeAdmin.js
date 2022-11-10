@@ -26,7 +26,6 @@ import EditExperience from "./EditExperience";
 import EditSkill from "./EditSkill";
 
 const ResumeAdmin = () => {
-  const [show, setShow] = useState();
 
   const { data: dataEdu, loading: dataLoading } = useQuery(GET_EDUCATIONS);
   const { data: dataExp, loading: LoadingExp } = useQuery(GET_EXPERIENCE);
@@ -43,7 +42,7 @@ const ResumeAdmin = () => {
   });
 
   if (dataLoading || LoadingExp || LoadingSkl) {
-    return Loading;
+    return <Loading/>;
   }
 
   const HandleDeleteEdu = (idx) => {

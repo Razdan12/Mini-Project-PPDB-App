@@ -70,7 +70,6 @@ export const GET_SERVICE = gql`
 
 `
 
-
 export const GET_MESSAGE = gql`
         query MyQuery {
             message {
@@ -134,5 +133,3 @@ export const GET_PORTFOLIO = gql`
         }
     }
   `
-
- 
