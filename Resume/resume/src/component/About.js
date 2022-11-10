@@ -5,6 +5,8 @@ import { GET_ABOUT } from '../GraphQl/Queries'
 
 const About = () => {
 
+	
+
 	const { data } = useQuery(GET_ABOUT)
 
 	return (

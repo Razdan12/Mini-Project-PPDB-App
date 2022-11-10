@@ -1,54 +1,72 @@
-import React from 'react'
-import NavAdmin from '../../component/NavAdmin'
-import Sidebar from "../../component/Sidebar"
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { EDIT_SKILL } from "../../../GraphQl/Mutation";
+import Swal from "sweetalert2";
+import Loading from '../../../component/Loading'
 
 
-const Editskill = () => {
-  return (
-    <div>
-            <div id="wrapper">
-                <Sidebar />
-                <div id="content-wrapper" class="d-flex flex-column">
-                    <div id="content">
-                        <NavAdmin />
-                    </div>
-                    <div class="ml-4">
-                        <h1 class="h3 mb-0 text-gray-800">Edit Skill</h1>
-                    </div>
-                    <div class="col-lg-12 mb-4">
-                        <div class="col-sm-12 p-2">
-                        
-                            <div class="card p-4">
+const Editskill = (props) => {
+    const [skill, setSkill] = useState("");
+    const [Range, setRange] = useState("");
 
-                                <div class="mb-3">
-                                    <label class="form-label">Title</label>
-                                    <input type="text" class="form-control"  />
-                                </div>
+    const [EditSkl, { Loading: updateLoading }] = useMutation(EDIT_SKILL);
 
-                                <div class="mb-3">
-                                    <label class="form-label">First Year</label>
-                                    <input type="text" class="form-control"  />
-                                </div>
+    if (updateLoading) {
+        return < Loading />;
+    }
 
-                                <div class="mb-3">
-                                    <label class="form-label">Last Year</label>
-                                    <input type="text" class="form-control"  />
-                                </div>
+    console.log(props.idx);
 
-                                
-                               
-                                <button class="btn btn-primary" >Simpan</button>
-                            </div>
-                           
-                        </div>
+    const updateSkl = async (e) => {
+        e.preventDefault();
+        await EditSkl({
+            variables: {
+                id: props.idx,
+                name_skill: skill,
+                range: Range,
+                
+            },
+        });
+        Swal.fire("Sukses", "Data Berhasil Disimpan !", "success");
+    };
 
-                    </div>
+    return (
+        <div>
+
+            <div class="card p-4">
+
+                <div class="mb-3">
+                    <label class="form-label">Skill</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        onChange={(e) => {
+                            setSkill(e.target.value);
+                        }}
+                        required
+                    />
                 </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Range</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        onChange={(e) => {
+                            setRange(e.target.value);
+                        }}
+                        required
+                    />
+                </div>
+
+
+
+                <button class="btn btn-primary" onClick={updateSkl}>Simpan</button>
             </div>
 
             <script src="./assets/js/sb-admin-2.min.js"></script>
         </div>
-  )
+    )
 }
 
 export default Editskill

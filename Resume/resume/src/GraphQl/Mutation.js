@@ -191,3 +191,29 @@ export const EDIT_EDUCATION = gql`
     }
   }
 `
+
+export const EDIT_EXPERIENCE = gql`
+    mutation MyMutation($id: Int = 10) {
+      update_experience_by_pk(pk_columns: {id: $id}) {
+        description
+        experience
+        first_year
+        last_year
+        sub_desk
+        workplace
+      }
+    }
+`
+
+export const EDIT_SKILL = gql`
+mutation MyMutation($id: Int = 10, 
+  $name_skill: String = "", 
+  $range: String = "") {
+  update_skills_by_pk(pk_columns: {id: $id}, _set: {
+    name_skill: $name_skill, 
+    range: $range}) {
+    id
+  }
+}
+
+`

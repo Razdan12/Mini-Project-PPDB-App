@@ -124,3 +124,5 @@ export const GET_SKILLS = gql`
         }
     }
 `
+
+
