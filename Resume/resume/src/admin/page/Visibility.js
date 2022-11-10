@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BsPencilSquare } from "react-icons/bs";
+import { BsPencilSquare, BsFillEyeSlashFill } from "react-icons/bs";
 
 export default function Visibility({ children }) {
 
@@ -10,7 +10,7 @@ export default function Visibility({ children }) {
   function toggleShow() {
     setShow(!show);
   }
-  var buttonText = show ? <BsPencilSquare /> : <BsPencilSquare />;
+  var buttonText = show ? <BsFillEyeSlashFill /> : <BsPencilSquare />;
 
   return (
     <div className="component-container">

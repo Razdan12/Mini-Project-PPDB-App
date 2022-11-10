@@ -125,4 +125,11 @@ export const GET_SKILLS = gql`
     }
 `
 
-
+export const GET_PORTFOLIO = gql`
+    query MyQuery {
+        portfolio {
+        name
+        image
+        }
+    }
+  `

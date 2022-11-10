@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 import { GET_RESUME } from '../GraphQl/Queries'
-
+ 
 const Resume = () => {
 	const { data } = useQuery(GET_RESUME)
 	return (

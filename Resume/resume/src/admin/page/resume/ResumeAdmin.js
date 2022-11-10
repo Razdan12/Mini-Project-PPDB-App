@@ -16,7 +16,7 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import Loading from "../../../component/Loading";
 import {
-  BsPencilSquare,
+
   BsFillTrashFill,
   BsFillPlusCircleFill,
 } from "react-icons/bs";
