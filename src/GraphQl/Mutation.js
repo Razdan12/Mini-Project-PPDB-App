@@ -235,5 +235,29 @@ mutation MyMutation($id: Int = 10) {
     id
     image
   }
+} 
+`
+
+export const UPDATE_PORTFOLIO = gql`
+mutation MyMutation($id: Int = 10, 
+  $image: String = "", 
+  $name: String = "", 
+  $url: String = "") {
+  update_portfolio_by_pk(pk_columns: {id: $id}, _set: {
+    image: $image, 
+    name: $name, 
+    url: $url}) {
+    id
+  }
 }
+
+`
+
+export const DELETE_SERVICE = gql`
+mutation MyMutation($id: Int = 10) {
+  delete_service_by_pk(id: $id) {
+    id
+  }
+}
+
 `

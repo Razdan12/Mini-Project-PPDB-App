@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import {
-  BsPencilSquare,
   BsFillTrashFill,
   BsFillPlusCircleFill,
 } from "react-icons/bs";
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_PORTFOLIO } from "../../../GraphQl/Queries";
+import { DELETE_PORTFOLIO } from "../../../GraphQl/Mutation";
 import Swal from "sweetalert2";
 import NavAdmin from "../../component/NavAdmin";
 import Sidebar from "../../component/Sidebar";
@@ -16,8 +16,12 @@ import EditPortfolio from "./EditPortfolio"
 
 const PortfolioAdmin = () => {
   const { data } = useQuery(GET_PORTFOLIO);
+  const [deletePort, { loading: LoadingDelete }] = useMutation(
+    DELETE_PORTFOLIO,
+    { refetchQueries: [GET_PORTFOLIO] }
+  );
 
-  const HandleDelete = () => {
+  const HandleDelete = (idx) => {
     return Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -28,6 +32,11 @@ const PortfolioAdmin = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
+        deletePort({
+          variables: {
+            id: idx,
+          },
+        });
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
       }
     });

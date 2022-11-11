@@ -15,7 +15,7 @@ import Sidebar from "../../component/Sidebar";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import Loading from "../../../component/Loading";
-import {
+import { 
 
   BsFillTrashFill,
   BsFillPlusCircleFill,
