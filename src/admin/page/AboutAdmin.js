@@ -6,7 +6,10 @@ import "../assets/css/sb-admin-2.min.css"
 import NavAdmin from '../component/NavAdmin'
 import Sidebar from "../component/Sidebar"
 import Swal from 'sweetalert2'
-import { storage } from "../../Firebase/config"
+import { storage } from "../../Firebase/config";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+
+import Loading from "../../component/Loading"
 
 const AboutAdmin = () => {
 
