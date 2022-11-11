@@ -41,7 +41,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
   uri:'https://quick-raccoon-82.hasura.app/v1/graphql',
   headers:{
-    'x-hasura-admin-secret' : 'VnVP6VG1OT1suqWkF7so2T0mhFtD6Ko5DJOZu83ITu3QU5vtqKEpcNOjKiJD1ggB'
+    'x-hasura-admin-secret' : SECRET CODE
   }
   
 });
