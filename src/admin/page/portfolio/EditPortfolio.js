@@ -1,6 +1,4 @@
 import React from "react";
-import NavAdmin from "../../component/NavAdmin";
-import Sidebar from "../../component/Sidebar";
 
 const EditPortfolio = () => {
   return (
