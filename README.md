@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# e-Portfolio
+### link power point <a href="https://docs.google.com/presentation/d/1jfLKkzRdzGdLKsxLhY4hLKI7QgVOLsXxHRLsUiLdE-U/edit#slide=id.g18a42fef5ae_2_49" target="_blank">Download</a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### link deploy <a href="https://cahyanto.netlify.app/" target="_blank">View</a>
 
-## Available Scripts
+## Fitur
+* Data Profil
+* Download PDF CV
+* Halaman Portfolio
+* Halaman Service
+* Pesan Realtime
+* Heroku
+* Hasura
+* Upload Foto / file ke firebase
+* Halaman Admin
 
-In the project directory, you can run:
+## Dokumentasi 
+1. halaman depan user
+![](doc/halaman%20user.png)
 
-### `npm start`
+2. Halaman About 
+![](doc/about.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. Halaman Resume
+![](doc/resume.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+4. Halaman Portfolio
+![](doc/portfolio.png)
 
-### `npm test`
+5. Halaman Service
+![](doc/service.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+6. Halaman Pesan
+![](doc/pesan.png)
 
-### `npm run build`
+7. Halaman Login
+![](doc/login.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+8. Halaman Admin
+![](doc/admin.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+lebih lengkap silakan kunjungi link deploy.<br>
+> project ini masih banyak kekurangan serta masuh terdapat bug di beberapa tampilan. program ini open source bebas untuk di kembangkan lagi.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Langkah - langkah instalasi
+* masuk ke terminal editor kalian dan ketikan 
+```powershell
+git clone https://github.com/Razdan12/Mini-Project-Portfolio.git
+```
 
-### `npm run eject`
+* setelah berhasil cloning program masuk ke directori project kalian dan ketikan 
+```powershell
+npm install
+```
+atau jika menggunkana yarn
+```powershell
+yarn install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* setelah modul selesai di download masuk ke file app.js dan rubah baris ke 42 dan 44 
+```javascript
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri:'https://quick-raccoon-82.hasura.app/v1/graphql', //link graph Ql Hasura
+  headers:{
+    'x-hasura-admin-secret' : 'VnVP6VG1OT1suqWkF7so2T0mhFtD6Ko5DJOZu3ITu3QU5vtqKEpcNOjKiJD1ggB' // Header Hasura
+  }
+});
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+pada config `uri` dan `headers` isikan link Graph Ql yang kalian dapatkan dari Hasura. untuk cara membuat Graph Ql di hasura silakan buka dokumentasi <a href="https://hasura.io/docs/latest/index/" target="_blank">Hasura</a>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* selanjutnya masuk ke folder `src/firebase` <br>
+pada file `firebase.js` <br>
+```javascript
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+const firebaseConfig = {
+  apiKey: "AIzaSyCmw7FOoAz9UNFtNQZaiQQE71ByRxiKF1E",
+  authDomain: "portofolio-b6e26.firebaseapp.com",
+  projectId: "portofolio-b6e26",
+  storageBucket: "portofolio-b6e26.appspot.com",
+  messagingSenderId: "745708029468",
+  appId: "1:745708029468:web:cb01b67248877a8690c1d9"
+};
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+const app = initializeApp(firebaseConfig);
+export const storage = getStorage(app)
+```
+replace semua config diatas dengan config firebase kalian. sebelumnya kalian harus sudah register ke firebase.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* setelah semua config diatas sudah di lakukan silakan jalankan program kalian dengan cara masuk ke terminal dan ketik
+```powershell
+npm start
+```
 
-### Code Splitting
+* selamat program telah berhasil dijalankan.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+> #### jika ada kesulitan dalam instalasi jangan sungkan untuk bertanya
+> contact Saya<br>
+> email : nur.razdan@gmail.com<br>
+> whatsapp : 085158693933
 
-### Analyzing the Bundle Size
+## Salam Coding
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
