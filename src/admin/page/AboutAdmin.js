@@ -26,7 +26,6 @@ const AboutAdmin = () => {
         return <Loading/>
     }
 
-
     if (error) {
         Swal.fire(
             'Gagal',
@@ -73,8 +72,6 @@ const AboutAdmin = () => {
             }
         )
     }
-
-
 
     const addData = async (e) => {
         e.preventDefault()
